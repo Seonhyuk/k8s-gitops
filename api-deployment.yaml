@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: fullstack-app-api
+        imagePullPolicy: Never
+        env:
+        - name: DATABASE_URL
+          value: "postgresql://postgres:mysecret@db:5432/postgres"
+        ports:
+        - containerPort: 3000

@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: api
-        image: fullstack-app-api
-        imagePullPolicy: Never
+        image: ghcr.io/seonhyuk/fullstack-app-api:f651bddacec33338ccc7f6e24a506e9250cf9cc7
+        imagePullPolicy: IfNotPresent
         env:
         - name: DATABASE_URL
           valueFrom:

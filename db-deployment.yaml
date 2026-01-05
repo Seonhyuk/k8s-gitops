@@ -17,6 +17,9 @@ spec:
         image: postgres
         env:
         - name: POSTGRES_PASSWORD
-          value: "mysecret"
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: password
         ports:
         - containerPort: 5432

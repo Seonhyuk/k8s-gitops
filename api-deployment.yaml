@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api
+  annotations:
+    reloader.stakater.com/auto: "true"
 spec:
   replicas: 5
   selector:
@@ -18,6 +20,9 @@ spec:
         imagePullPolicy: Never
         env:
         - name: DATABASE_URL
-          value: "postgresql://postgres:mysecret@db:5432/postgres"
+          valueFrom:
+            secretKeyRef:
+              name: api-secret
+              key: database-url
         ports:
         - containerPort: 3000
